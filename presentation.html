@@ -330,28 +330,28 @@
     <div class="blob blob-1"></div>
     <div class="slide-header">
       <span class="eyebrow-pill">01. Overview &amp; Motivation</span>
-      <h2 class="slide-title">Problem Statement &amp; <em>Project Vision.</em></h2>
+      <h2 class="slide-title">Why We Built CineBook — <em>The Problem &amp; Our Solution.</em></h2>
     </div>
     <div class="slide-body">
       <div class="grid-2">
         <div class="card-box">
-          <span class="badge-tag badge-red">Legacy System Pitfalls</span>
-          <h3 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 12px; color: #fff;">The Challenges</h3>
+          <span class="badge-tag badge-red">The Daily Booking Struggle</span>
+          <h3 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 12px; color: #fff;">Legacy System Pitfalls</h3>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 0.95rem; color: var(--text-2);">
-            <li><strong style="color: #fff;">• Sluggish &amp; Cluttered Interfaces:</strong> Traditional booking sites are heavy, ad-ridden, and lack intuitive user flow.</li>
-            <li><strong style="color: #fff;">• Inventory Inconsistencies:</strong> Slow database synchronization leads to seat contention and double-booking errors.</li>
-            <li><strong style="color: #fff;">• Difficult Cancellations:</strong> Most platforms bury ticket cancellation behind multi-step support tickets without instant seat return.</li>
-            <li><strong style="color: #fff;">• Disjointed Administration:</strong> No unified dashboard for cinema managers to curate film schedules and seat quotas.</li>
+            <li><strong style="color: #fff;">• Crowded &amp; Slow Interfaces:</strong> Cluttered layouts with overwhelming banners and complicated checkout steps.</li>
+            <li><strong style="color: #fff;">• Confusing Seat Statuses:</strong> Delayed synchronization causes seats to show available when already taken.</li>
+            <li><strong style="color: #fff;">• Painful Cancellation Flows:</strong> Cancelling tickets usually involves support tickets or lost seats with no immediate refund.</li>
+            <li><strong style="color: #fff;">• Zero Admin Clarity:</strong> Cinema owners lack a fast, clean dashboard to adjust schedules and capacities.</li>
           </ul>
         </div>
         <div class="card-box border-brand">
-          <span class="badge-tag badge-brand">The CineBook Solution</span>
-          <h3 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 12px; color: var(--brand);">Our Vision &amp; Objectives</h3>
+          <span class="badge-tag badge-brand">How CineBook Fixes It</span>
+          <h3 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 12px; color: var(--brand);">Our Vision &amp; Approach</h3>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 0.95rem; color: var(--text-2);">
-            <li><strong style="color: var(--amber);">✔ End-to-End CRUD Lifecycle:</strong> Full control over movie schedules, seat updates, and instant bookings.</li>
-            <li><strong style="color: var(--amber);">✔ Atomic Seat Restitution:</strong> Automatic decrement on reservation and immediate refund back to inventory on cancellation.</li>
-            <li><strong style="color: var(--amber);">✔ Warm Editorial Aesthetics:</strong> Inspired by HealthTwin with sunset orange accents, Fraunces serif typography, and 3D parallax effects.</li>
-            <li><strong style="color: var(--amber);">✔ Verified Admission Passes:</strong> Generates instant digital passes with perforated styling, showtimes, and barcode references.</li>
+            <li><strong style="color: var(--amber);">✔ Instant, Distraction-Free Booking:</strong> Pick your movie, pick your seats, and get your pass in seconds.</li>
+            <li><strong style="color: var(--amber);">✔ Live Seat Balance:</strong> Capacity updates immediately so guests always see true availability.</li>
+            <li><strong style="color: var(--amber);">✔ 1-Click Friendly Cancellations:</strong> Free up seats immediately back to the cinema with a single click.</li>
+            <li><strong style="color: var(--amber);">✔ Straightforward Movie Management:</strong> Add, edit, or remove movies with live feedback on all screens.</li>
           </ul>
         </div>
       </div>
@@ -367,54 +367,48 @@
     <div class="blob blob-2"></div>
     <div class="slide-header">
       <span class="eyebrow-pill">02. Architecture Design</span>
-      <h2 class="slide-title">Three-Tier <em>System Architecture.</em></h2>
+      <h2 class="slide-title">How the System Fits Together — <em>3-Tier Architecture.</em></h2>
     </div>
     <div class="slide-body">
       <div class="grid-3">
         <div class="card-box">
           <span class="badge-tag badge-brand">Presentation Tier</span>
-          <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 8px; color: #fff;">Client SPA (React 19)</h3>
-          <small style="color: var(--amber); font-weight: 600; margin-bottom: 12px;">Port 5173 · Vite Engine</small>
-          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: var(--text-2);">
-            <li>• React 19 Components with Hooks</li>
-            <li>• Declarative React Router DOM v7</li>
-            <li>• Axios HTTP API Client</li>
-            <li>• Custom CSS3 Design Tokens</li>
-            <li>• IntersectionObserver Motion Engine</li>
-            <li>• Preloader, 3D Tilt &amp; Counter Hooks</li>
+          <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 4px; color: #fff;">What Users See</h3>
+          <small style="color: var(--amber); font-weight: 600; margin-bottom: 12px;">React 19 + Vite · Port 5173</small>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--text-2);">
+            <li>• Fast, responsive Single Page Application</li>
+            <li>• Reusable UI components &amp; interactive modals</li>
+            <li>• Smooth scroll reveals and micro-animations</li>
+            <li>• Real-time form validation with instant error hints</li>
           </ul>
         </div>
         <div class="card-box border-brand">
           <span class="badge-tag badge-amber">Application Tier</span>
-          <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 8px; color: #fff;">Express REST Server</h3>
-          <small style="color: var(--amber); font-weight: 600; margin-bottom: 12px;">Port 7000 · Node.js Runtime</small>
-          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: var(--text-2);">
-            <li>• Express.js 5 Application Server</li>
-            <li>• REST API Routes (/api/*)</li>
-            <li>• CORS Security &amp; JSON Body Parsers</li>
-            <li>• Concurrency &amp; Inventory Validation</li>
-            <li>• Seat Restitution Logic</li>
-            <li>• Uniform JSON Error Formatter</li>
+          <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 4px; color: #fff;">How It Thinks</h3>
+          <small style="color: var(--amber); font-weight: 600; margin-bottom: 12px;">Node.js + Express 5 · Port 7000</small>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--text-2);">
+            <li>• 9 clean REST API endpoints for movies and tickets</li>
+            <li>• Verifies seat limits before confirming bookings</li>
+            <li>• Automatically returns seats upon ticket cancellation</li>
+            <li>• Safe CORS security &amp; clean JSON error responses</li>
           </ul>
         </div>
         <div class="card-box">
-          <span class="badge-tag badge-emerald">Data Persistence Tier</span>
-          <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 8px; color: #fff;">MongoDB Database</h3>
-          <small style="color: var(--emerald); font-weight: 600; margin-bottom: 12px;">Port 27017 · Mongoose 9 ODM</small>
-          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: var(--text-2);">
-            <li>• MongoDB 9.0 Community Server</li>
-            <li>• Database Name: <code>moviebooking</code></li>
-            <li>• Collection: <code>movies</code> (Unique Index)</li>
-            <li>• Collection: <code>bookings</code> (Receipts)</li>
-            <li>• Live Inspection with Compass GUI</li>
-            <li>• Terminal CLI (npm run db:view)</li>
+          <span class="badge-tag badge-emerald">Persistence Tier</span>
+          <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 4px; color: #fff;">Where Data Lives</h3>
+          <small style="color: var(--emerald); font-weight: 600; margin-bottom: 12px;">MongoDB 9.0 + Mongoose · Port 27017</small>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--text-2);">
+            <li>• Database: <code>moviebooking</code></li>
+            <li>• <code>movies</code> collection stores films and capacities</li>
+            <li>• <code>bookings</code> collection tracks issued tickets</li>
+            <li>• Built-in CLI &amp; Compass GUI verification</li>
           </ul>
         </div>
       </div>
     </div>
     <div class="slide-footer">
       <span>URK24CS1199 &amp; URK24CS1238</span>
-      <span>3-Tier Full-Stack Architecture</span>
+      <span>3-Tier Architecture Overview</span>
     </div>
   </div>
 
@@ -423,38 +417,48 @@
     <div class="blob blob-1"></div>
     <div class="slide-header">
       <span class="eyebrow-pill">03. Technical Specifications</span>
-      <h2 class="slide-title">Technology Stack &amp; <em>Tooling.</em></h2>
+      <h2 class="slide-title">Tech Stack We Chose — <em>And Why We Picked It.</em></h2>
     </div>
     <div class="slide-body">
-      <div class="grid-3">
+      <div class="grid-4">
         <div class="card-box">
-          <span class="badge-tag badge-brand">Frontend Framework</span>
-          <h4 style="color:#fff; margin-bottom:12px;">React 19 &amp; Vite 8</h4>
-          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.6; margin-bottom:14px;">
-            Harnesses React 19 functional components, memoized state trees, and Vite's lightning-fast ES module hot reloading.
+          <span class="badge-tag badge-brand">Frontend</span>
+          <h4 style="color:#fff; margin-bottom:8px;">React 19 &amp; Vite 8</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.5; margin-bottom:12px;">
+            Provides instant sub-second hot reloading, clean component hierarchy, and efficient client-side routing.
           </p>
-          <div style="font-size:0.82rem; color:var(--muted); border-top:1px solid var(--line); padding-top:10px;">
-            <strong>Packages:</strong> react, react-dom, react-router-dom, axios, bootstrap
+          <div style="font-size:0.78rem; color:var(--muted); border-top:1px solid var(--line); padding-top:8px;">
+            <strong>Key Tools:</strong> React Router DOM v7, Axios, Bootstrap 5 Icons
           </div>
         </div>
         <div class="card-box">
-          <span class="badge-tag badge-amber">Backend &amp; Database</span>
-          <h4 style="color:#fff; margin-bottom:12px;">Node.js, Express &amp; MongoDB</h4>
-          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.6; margin-bottom:14px;">
-            Lightweight, event-driven REST API server paired with Mongoose schema modeling and MongoDB local persistence daemon.
+          <span class="badge-tag badge-amber">Backend</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Node.js &amp; Express 5</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.5; margin-bottom:12px;">
+            Asynchronous event loop easily handles concurrent seat queries with minimal boilerplate and clean routing.
           </p>
-          <div style="font-size:0.82rem; color:var(--muted); border-top:1px solid var(--line); padding-top:10px;">
-            <strong>Packages:</strong> express 5.3, mongoose 9.11, cors 2.8, nodemon
+          <div style="font-size:0.78rem; color:var(--muted); border-top:1px solid var(--line); padding-top:8px;">
+            <strong>Key Tools:</strong> Express 5.3, CORS, Nodemon
           </div>
         </div>
         <div class="card-box">
-          <span class="badge-tag badge-emerald">DevOps &amp; Quality</span>
-          <h4 style="color:#fff; margin-bottom:12px;">Git, Compass &amp; Oxlint</h4>
-          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.6; margin-bottom:14px;">
-            Code versioning through Git/GitHub, sub-40ms static linting with Oxlint, and graphical DB verification with Compass.
+          <span class="badge-tag badge-emerald">Database</span>
+          <h4 style="color:#fff; margin-bottom:8px;">MongoDB &amp; Mongoose</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.5; margin-bottom:12px;">
+            Flexible schema-based document store that maps perfectly to JSON data sent between frontend and backend.
           </p>
-          <div style="font-size:0.82rem; color:var(--muted); border-top:1px solid var(--line); padding-top:10px;">
-            <strong>Tools:</strong> git, github, mongosh, mongodb-compass, oxlint
+          <div style="font-size:0.78rem; color:var(--muted); border-top:1px solid var(--line); padding-top:8px;">
+            <strong>Key Tools:</strong> MongoDB 9.0, Mongoose 9.11 ODM
+          </div>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Tooling</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Git, Oxlint &amp; Compass</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.5; margin-bottom:12px;">
+            Rigorous code quality with 0 linter warnings, visual database inspector, and terminal DB preview commands.
+          </p>
+          <div style="font-size:0.78rem; color:var(--muted); border-top:1px solid var(--line); padding-top:8px;">
+            <strong>Key Tools:</strong> Git/GitHub, Oxlint, MongoDB Compass
           </div>
         </div>
       </div>
@@ -469,8 +473,8 @@
   <div class="slide" id="slide-5">
     <div class="blob blob-2"></div>
     <div class="slide-header">
-      <span class="eyebrow-pill">04. Data Modeling</span>
-      <h2 class="slide-title">MongoDB Collections &amp; <em>Mongoose Schemas.</em></h2>
+      <span class="eyebrow-pill">04. Data Structure</span>
+      <h2 class="slide-title">How Data Is Structured — <em>Clean Mongoose Schemas.</em></h2>
     </div>
     <div class="slide-body">
       <div class="grid-2">
@@ -481,7 +485,7 @@
               <tr><th>Field</th><th>Type</th><th>Constraint</th><th>Description</th></tr>
             </thead>
             <tbody>
-              <tr><td class="font-mono">movieId</td><td>String</td><td>unique, required</td><td>Unique identifier (M101)</td></tr>
+              <tr><td class="font-mono">movieId</td><td>String</td><td>unique, required</td><td>Unique identifier (e.g., M101)</td></tr>
               <tr><td class="font-mono">title</td><td>String</td><td>required</td><td>Official film title</td></tr>
               <tr><td class="font-mono">genre</td><td>String</td><td>required</td><td>Genre classification</td></tr>
               <tr><td class="font-mono">duration</td><td>Number</td><td>required, min: 1</td><td>Runtime in minutes</td></tr>
@@ -497,9 +501,9 @@
               <tr><th>Field</th><th>Type</th><th>Constraint</th><th>Description</th></tr>
             </thead>
             <tbody>
-              <tr><td class="font-mono">customerName</td><td>String</td><td>required</td><td>Guest full name</td></tr>
-              <tr><td class="font-mono">movieId</td><td>String</td><td>required</td><td>Foreign movie key</td></tr>
-              <tr><td class="font-mono">movieTitle</td><td>String</td><td>required</td><td>Snapshot of title</td></tr>
+              <tr><td class="font-mono">customerName</td><td>String</td><td>required</td><td>Customer's full name</td></tr>
+              <tr><td class="font-mono">movieId</td><td>String</td><td>required</td><td>Movie identifier link</td></tr>
+              <tr><td class="font-mono">movieTitle</td><td>String</td><td>required</td><td>Snapshot of movie name</td></tr>
               <tr><td class="font-mono">showtime</td><td>String</td><td>required</td><td>Selected show slot</td></tr>
               <tr><td class="font-mono">seats</td><td>Number</td><td>required, min: 1</td><td>Reserved seats count</td></tr>
               <tr><td class="font-mono">status</td><td>String</td><td>default: 'Booked'</td><td>'Booked' | 'Cancelled'</td></tr>
@@ -520,24 +524,24 @@
     <div class="blob blob-1"></div>
     <div class="slide-header">
       <span class="eyebrow-pill">05. REST API Architecture</span>
-      <h2 class="slide-title">Backend RESTful <em>Endpoints Matrix.</em></h2>
+      <h2 class="slide-title">REST API at a Glance — <em>All 9 Endpoints.</em></h2>
     </div>
     <div class="slide-body">
       <div class="card-box" style="width: 100%; padding: 12px 18px;">
         <table class="pres-table">
           <thead>
-            <tr><th>Method</th><th>Endpoint</th><th>CRUD</th><th>Payload / Params</th><th>Purpose</th></tr>
+            <tr><th>Method</th><th>Endpoint</th><th>CRUD</th><th>What It Does</th><th>Real-World Action</th></tr>
           </thead>
           <tbody>
-            <tr><td style="color:#10b981; font-weight:700;">POST</td><td class="font-mono">/api/addMovie</td><td>Create</td><td>{ movieId, title, genre, duration, ... }</td><td>Adds a new movie to schedule with seat limit</td></tr>
-            <tr><td style="color:#3b82f6; font-weight:700;">GET</td><td class="font-mono">/api/viewMovies</td><td>Read</td><td>None</td><td>Retrieves all movies and live seat stock</td></tr>
-            <tr><td style="color:#3b82f6; font-weight:700;">GET</td><td class="font-mono">/api/searchMovies</td><td>Read</td><td>?title=searchQuery</td><td>Case-insensitive title search via regex</td></tr>
-            <tr><td style="color:#f59e0b; font-weight:700;">POST</td><td class="font-mono">/api/updateMovie</td><td>Update</td><td>{ id, title, genre, duration, seats }</td><td>Modifies details and updates seat quota</td></tr>
-            <tr><td style="color:#ef4444; font-weight:700;">POST</td><td class="font-mono">/api/deleteMovie</td><td>Delete</td><td>{ id }</td><td>Removes movie and cleans related bookings</td></tr>
-            <tr><td style="color:#10b981; font-weight:700;">POST</td><td class="font-mono">/api/bookTicket</td><td>Create</td><td>{ customerName, movieId, showtime, seats }</td><td>Decrements inventory &amp; issues ticket pass</td></tr>
-            <tr><td style="color:#3b82f6; font-weight:700;">GET</td><td class="font-mono">/api/viewBookings</td><td>Read</td><td>None</td><td>Returns all booking history documents</td></tr>
-            <tr><td style="color:#f59e0b; font-weight:700;">POST</td><td class="font-mono">/api/cancelBooking</td><td>Update</td><td>{ id }</td><td>Marks status 'Cancelled' &amp; returns seats</td></tr>
-            <tr><td style="color:#ef4444; font-weight:700;">POST</td><td class="font-mono">/api/deleteBooking</td><td>Delete</td><td>{ id }</td><td>Purges booking record permanently from DB</td></tr>
+            <tr><td style="color:#10b981; font-weight:700;">POST</td><td class="font-mono">/api/addMovie</td><td>Create</td><td>Adds a new movie to schedule with seat limit</td><td>Admin adds new title</td></tr>
+            <tr><td style="color:#3b82f6; font-weight:700;">GET</td><td class="font-mono">/api/viewMovies</td><td>Read</td><td>Retrieves all movies and live seat stock</td><td>Browse movies page</td></tr>
+            <tr><td style="color:#3b82f6; font-weight:700;">GET</td><td class="font-mono">/api/searchMovies</td><td>Read</td><td>Case-insensitive title search via regex</td><td>Live search input</td></tr>
+            <tr><td style="color:#f59e0b; font-weight:700;">POST</td><td class="font-mono">/api/updateMovie</td><td>Update</td><td>Modifies details and updates seat quota</td><td>Admin updates schedule</td></tr>
+            <tr><td style="color:#ef4444; font-weight:700;">POST</td><td class="font-mono">/api/deleteMovie</td><td>Delete</td><td>Removes movie and cleans related bookings</td><td>Admin retires movie</td></tr>
+            <tr><td style="color:#10b981; font-weight:700;">POST</td><td class="font-mono">/api/bookTicket</td><td>Create</td><td>Decrements inventory &amp; issues ticket pass</td><td>User completes booking</td></tr>
+            <tr><td style="color:#3b82f6; font-weight:700;">GET</td><td class="font-mono">/api/viewBookings</td><td>Read</td><td>Returns all booking history documents</td><td>User checks tickets</td></tr>
+            <tr><td style="color:#f59e0b; font-weight:700;">POST</td><td class="font-mono">/api/cancelBooking</td><td>Update</td><td>Marks status 'Cancelled' &amp; returns seats</td><td>User cancels ticket</td></tr>
+            <tr><td style="color:#ef4444; font-weight:700;">POST</td><td class="font-mono">/api/deleteBooking</td><td>Delete</td><td>Purges booking record permanently from DB</td><td>History maintenance</td></tr>
           </tbody>
         </table>
       </div>
@@ -552,35 +556,35 @@
   <div class="slide" id="slide-7">
     <div class="blob blob-2"></div>
     <div class="slide-header">
-      <span class="eyebrow-pill">06. Workflow Engineering</span>
-      <h2 class="slide-title">Technical Workflow: <em>Ticket Booking.</em></h2>
+      <span class="eyebrow-pill">06. Booking Workflow</span>
+      <h2 class="slide-title">What Happens When You Book — <em>5-Step Booking Flow.</em></h2>
     </div>
     <div class="slide-body">
       <div class="grid-5">
         <div class="card-box">
           <span class="badge-tag badge-brand">Step 01</span>
-          <h4 style="color:#fff; margin-bottom:8px;">User Selection</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">User chooses movie, showtime, enters name and specifies seat count.</p>
+          <h4 style="color:#fff; margin-bottom:8px;">Pick &amp; Fill</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">Choose movie, showtime, enter name and seat count on the booking form.</p>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-brand">Step 02</span>
-          <h4 style="color:#fff; margin-bottom:8px;">Axios Dispatch</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Client transmits async POST request payload to <code>/api/bookTicket</code>.</p>
+          <h4 style="color:#fff; margin-bottom:8px;">Quick Check</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">Frontend verifies inputs and sends async POST request to <code>/api/bookTicket</code>.</p>
         </div>
         <div class="card-box border-brand">
           <span class="badge-tag badge-amber">Step 03</span>
-          <h4 style="color:var(--amber); margin-bottom:8px;">Server Validation</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Express verifies movie existence and checks: <code>availableSeats &gt;= requested</code>.</p>
+          <h4 style="color:var(--amber); margin-bottom:8px;">Safe Reservation</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">Express verifies movie exists and checks: <code>availableSeats &gt;= requested</code>.</p>
         </div>
         <div class="card-box border-brand">
           <span class="badge-tag badge-amber">Step 04</span>
-          <h4 style="color:var(--amber); margin-bottom:8px;">Atomic Save</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Decrements movie seats and persists new <code>Booking</code> document into MongoDB.</p>
+          <h4 style="color:var(--amber); margin-bottom:8px;">Update &amp; Save</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">Decrements seat stock and creates a confirmed booking document in MongoDB.</p>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-emerald">Step 05</span>
-          <h4 style="color:#fff; margin-bottom:8px;">Pass Issuance</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Client generates verified digital ticket pass with cutouts and barcode.</p>
+          <h4 style="color:#fff; margin-bottom:8px;">Ticket Ready</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">Displays styled admission pass with barcode and show details immediately.</p>
         </div>
       </div>
     </div>
@@ -594,35 +598,35 @@
   <div class="slide" id="slide-8">
     <div class="blob blob-1"></div>
     <div class="slide-header">
-      <span class="eyebrow-pill">07. Workflow Engineering</span>
-      <h2 class="slide-title">Technical Workflow: <em>Ticket Cancellation.</em></h2>
+      <span class="eyebrow-pill">07. Cancellation Workflow</span>
+      <h2 class="slide-title">What Happens When You Cancel — <em>1-Click Seat Restitution.</em></h2>
     </div>
     <div class="slide-body">
       <div class="grid-5">
         <div class="card-box">
           <span class="badge-tag badge-amber">Stage 01</span>
-          <h4 style="color:#fff; margin-bottom:8px;">Cancel Intent</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">User clicks Cancel button on active ticket in <code>/bookings</code> view.</p>
+          <h4 style="color:#fff; margin-bottom:8px;">View Ticket</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">User visits <code>/bookings</code> and spots their active reservation pass.</p>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-amber">Stage 02</span>
-          <h4 style="color:#fff; margin-bottom:8px;">Modal Safeguard</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">ConfirmModal prompts confirmation to prevent accidental cancellations.</p>
+          <h4 style="color:#fff; margin-bottom:8px;">Double-Check</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">Confirmation modal pops up to prevent accidental ticket cancellations.</p>
         </div>
         <div class="card-box border-amber">
           <span class="badge-tag badge-red">Stage 03</span>
-          <h4 style="color:var(--amber); margin-bottom:8px;">Status Shift</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Express verifies active state, changes <code>status = 'Cancelled'</code>.</p>
+          <h4 style="color:var(--amber); margin-bottom:8px;">Status Change</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">Server sets status to <code>'Cancelled'</code>, preserving the historical record.</p>
         </div>
         <div class="card-box border-amber">
           <span class="badge-tag badge-emerald">Stage 04</span>
-          <h4 style="color:var(--emerald); margin-bottom:8px;">Seat Restitution</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Locates movie by movieId; adds seats back: <code>seats += booking.seats</code>.</p>
+          <h4 style="color:var(--emerald); margin-bottom:8px;">Give Seats Back</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">Exact seat count is added right back to the movie: <code>seats += booking.seats</code>.</p>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-brand">Stage 05</span>
-          <h4 style="color:#fff; margin-bottom:8px;">Client Sync</h4>
-          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Client receives success message; auto-reloads lists and updates badges.</p>
+          <h4 style="color:#fff; margin-bottom:8px;">Instant Sync</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">Screen refreshes immediately with updated badges and restored seat totals.</p>
         </div>
       </div>
     </div>
@@ -637,50 +641,50 @@
     <div class="blob blob-2"></div>
     <div class="slide-header">
       <span class="eyebrow-pill">08. User Experience</span>
-      <h2 class="slide-title">UI/UX Innovations &amp; <em>Motion Engineering.</em></h2>
+      <h2 class="slide-title">Designed for Humans — <em>Warm Editorial Aesthetic.</em></h2>
     </div>
     <div class="slide-body">
       <div class="grid-3">
         <div class="card-box">
           <span class="badge-tag badge-brand">Color Palette</span>
-          <h4 style="color:#fff; margin-bottom:8px;">Warm Sunset Shades</h4>
+          <h4 style="color:#fff; margin-bottom:8px;">Warm Editorial Palette</h4>
           <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
-            Radiant Sunset Orange (<code>#FF6B2B</code>), Burnt Terracotta (<code>#EA580C</code>), Golden Amber (<code>#F59E0B</code>), on rich Obsidian Slate (<code>#090B0E</code>).
+            Radiant Sunset Orange (<code>#FF6B2B</code>), Golden Amber (<code>#F59E0B</code>), on rich Obsidian Slate (<code>#090B0E</code>).
           </p>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-brand">Typography</span>
-          <h4 style="color:#fff; margin-bottom:8px;">Editorial Display Serif</h4>
+          <h4 style="color:#fff; margin-bottom:8px;">Display Typography</h4>
           <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
-            Google Fonts <strong>Fraunces</strong> with optical sizing for headlines and <strong>DM Sans</strong> for high-contrast UI legibility.
+            Google Fonts <strong>Fraunces</strong> serif for distinctive headlines and <strong>DM Sans</strong> for clear readability.
           </p>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-amber">Hydration</span>
           <h4 style="color:#fff; margin-bottom:8px;">Cinema Pulse Preloader</h4>
           <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
-            Animated SVG pulse path with glowing orange stroke and CineBook mark that gracefully fades out after load.
+            Glowing animated SVG heartbeat that fades smoothly upon page load for an inviting movie premiere touch.
           </p>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-amber">Scroll Animation</span>
           <h4 style="color:#fff; margin-bottom:8px;">Scroll-in Reveals</h4>
           <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
-            Custom <code>useScrollReveal</code> hook with IntersectionObserver triggers cubic ease-out fade-ups with custom delays (<code>--d</code>).
+            Lightweight <code>IntersectionObserver</code> triggers smooth cubic ease-out fade-ups on every section as you scroll.
           </p>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-emerald">Micro-Interactions</span>
-          <h4 style="color:#fff; margin-bottom:8px;">3D Parallax Ticket</h4>
+          <h4 style="color:#fff; margin-bottom:8px;">3D Parallax Tilt</h4>
           <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
-            Interactive pointer event listeners provide subtle 3D tilt perspective on featured movie cards with play badge reveals.
+            Subtle interactive perspective on featured cards with hover badges and responsive tactile feedback.
           </p>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-emerald">Navigation</span>
-          <h4 style="color:#fff; margin-bottom:8px;">Floating Glass Header</h4>
+          <h4 style="color:#fff; margin-bottom:8px;">Distraction-Free UX</h4>
           <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
-            Glassmorphic backdrop-blur header with smart scroll hide/reveal and full-screen numbered menu overlay (01 to 05).
+            Fixed glassmorphic navigation header with clear typography, quick links, and zero annoying popups.
           </p>
         </div>
       </div>
@@ -696,27 +700,27 @@
     <div class="blob blob-1"></div>
     <div class="slide-header">
       <span class="eyebrow-pill">09. Viva &amp; Demonstration</span>
-      <h2 class="slide-title">Live Database Verification: <em>GUI &amp; CLI.</em></h2>
+      <h2 class="slide-title">How to Verify the Database in Viva — <em>Live Demonstration.</em></h2>
     </div>
     <div class="slide-body">
       <div class="grid-2">
         <div class="card-box border-brand">
-          <span class="badge-tag badge-brand">Method 1: MongoDB Compass</span>
+          <span class="badge-tag badge-brand">Option 1: MongoDB Compass (GUI)</span>
           <h3 style="font-size:1.2rem; color:#fff; margin-bottom:10px;">Visual GUI Demonstration</h3>
-          <ol style="padding-left:18px; font-size:0.88rem; color:var(--text-2); display:flex; flex-direction:column; gap:10px;">
-            <li><strong>Connect to Local Host:</strong> Launch Compass and connect to <code>mongodb://localhost:27017</code>.</li>
-            <li><strong>Database Inspection:</strong> Select the <code>moviebooking</code> database and open <code>movies</code> or <code>bookings</code>.</li>
-            <li><strong>Live Document Observation:</strong> Review active movie records and customer booking passes in real time.</li>
-            <li><strong>Instant Synchronized Reflection:</strong> Book or cancel tickets on the UI, click <strong>Refresh (🔄)</strong> in Compass, and demonstrate instant DB document updates!</li>
+          <ol style="padding-left:18px; font-size:0.9rem; color:var(--text-2); display:flex; flex-direction:column; gap:10px;">
+            <li><strong>Connect to Local Host:</strong> Launch MongoDB Compass and connect to <code>mongodb://localhost:27017</code>.</li>
+            <li><strong>Open 'moviebooking' Database:</strong> Select the database and open <code>movies</code> or <code>bookings</code>.</li>
+            <li><strong>Inspect Documents Live:</strong> Review active movie records and customer booking passes in real time.</li>
+            <li><strong>Show Instant Updates:</strong> Book a ticket in the browser, hit <strong>Refresh (🔄)</strong> in Compass, and watch the document appear!</li>
           </ol>
         </div>
         <div class="card-box border-amber">
-          <span class="badge-tag badge-amber">Method 2: Command Line Interface</span>
+          <span class="badge-tag badge-amber">Option 2: Built-in Terminal CLI</span>
           <h3 style="font-size:1.2rem; color:var(--amber); margin-bottom:10px;">Terminal CLI (npm run db:view)</h3>
-          <ol style="padding-left:18px; font-size:0.88rem; color:var(--text-2); display:flex; flex-direction:column; gap:10px;">
-            <li><strong>Built-In Inspection Tool:</strong> Executed via <code>node view-db.js</code> in <code>server-app</code>.</li>
+          <ol style="padding-left:18px; font-size:0.9rem; color:var(--text-2); display:flex; flex-direction:column; gap:10px;">
+            <li><strong>Run Inspection Tool:</strong> Execute <code>npm run db:view</code> or <code>node view-db.js</code> in <code>server-app</code>.</li>
             <li><strong>Instant ASCII Tables:</strong> Prints live formatted tables of movies and customer bookings directly in the terminal.</li>
-            <li><strong>Perfect for Viva Sessions:</strong> Allows evaluators to inspect database records in seconds without leaving the terminal.</li>
+            <li><strong>Perfect for Rapid Viva Verification:</strong> Evaluators can inspect live records in seconds without leaving the terminal.</li>
             <li><strong>Zero External Dependencies:</strong> Communicates directly over local TCP port 27017 via Mongoose.</li>
           </ol>
         </div>
@@ -733,40 +737,40 @@
     <div class="blob blob-2"></div>
     <div class="slide-header">
       <span class="eyebrow-pill">10. Problem Solving</span>
-      <h2 class="slide-title">Technical Challenges &amp; <em>Engineering Solutions.</em></h2>
+      <h2 class="slide-title">Real Engineering Problems We Solved — <em>And How We Fixed Them.</em></h2>
     </div>
     <div class="slide-body">
       <div class="grid-2">
         <div class="card-box">
           <span class="badge-tag badge-brand">Challenge 01</span>
-          <h4 style="color:#fff; margin-bottom:6px;">Inventory Contention &amp; Overbooking</h4>
-          <p style="font-size:0.84rem; color:var(--text-2); margin-bottom:8px;">Risk of multiple users booking the same last seats simultaneously.</p>
-          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.82rem; color:var(--emerald);">
-            <strong>Solution:</strong> Pre-save validation verifies <code>availableSeats &gt;= requested</code> before decrementing inventory.
+          <h4 style="color:#fff; margin-bottom:6px;">Seat Overbooking</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); margin-bottom:8px;">Risk of multiple users grabbing the same last seats simultaneously.</p>
+          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.84rem; color:var(--emerald);">
+            <strong>How We Solved It:</strong> Server verifies <code>availableSeats &gt;= requested</code> before decrementing inventory.
           </div>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-amber">Challenge 02</span>
-          <h4 style="color:#fff; margin-bottom:6px;">Two-Way Collection Synchronization</h4>
-          <p style="font-size:0.84rem; color:var(--text-2); margin-bottom:8px;">Cancelled bookings must reliably return seats back to movie capacity.</p>
-          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.82rem; color:var(--emerald);">
-            <strong>Solution:</strong> Cancellation endpoint matches <code>movieId</code> and increments <code>availableSeats += seats</code>.
+          <h4 style="color:#fff; margin-bottom:6px;">Returning Seats Upon Cancellation</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); margin-bottom:8px;">Cancelled bookings must reliably add seats back to the movie capacity.</p>
+          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.84rem; color:var(--emerald);">
+            <strong>How We Solved It:</strong> Cancellation endpoint atomically finds the movie and adds seats back: <code>seats += booking.seats</code>.
           </div>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-emerald">Challenge 03</span>
-          <h4 style="color:#fff; margin-bottom:6px;">React 19 StrictMode &amp; Effect Cascades</h4>
-          <p style="font-size:0.84rem; color:var(--text-2); margin-bottom:8px;">Linter warnings regarding synchronous setState execution inside useEffect.</p>
-          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.82rem; color:var(--emerald);">
-            <strong>Solution:</strong> Migrated to functional initializer callbacks and achieved 0 warnings across all 22 files in Oxlint.
+          <h4 style="color:#fff; margin-bottom:6px;">React 19 State Cascades</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); margin-bottom:8px;">Linter warnings regarding synchronous setState execution inside useEffect.</p>
+          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.84rem; color:var(--emerald);">
+            <strong>How We Solved It:</strong> Refactored to functional state initializers, achieving 0 warnings across all 22 files in Oxlint.
           </div>
         </div>
         <div class="card-box">
           <span class="badge-tag badge-brand">Challenge 04</span>
-          <h4 style="color:#fff; margin-bottom:6px;">Fixed Header Navigation Collision</h4>
-          <p style="font-size:0.84rem; color:var(--text-2); margin-bottom:8px;">Fixed glassmorphic header created overlapping content collisions on inner pages.</p>
-          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.82rem; color:var(--emerald);">
-            <strong>Solution:</strong> Calibrated <code>padding-top: 78px</code> with tight container padding for a snug, balanced layout.
+          <h4 style="color:#fff; margin-bottom:6px;">Clean Screen Layout</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); margin-bottom:8px;">Fixed glassmorphic header created overlapping content collisions on inner pages.</p>
+          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.84rem; color:var(--emerald);">
+            <strong>How We Solved It:</strong> Calibrated <code>padding-top: 78px</code> with tight container padding for a snug, balanced layout.
           </div>
         </div>
       </div>
@@ -782,24 +786,24 @@
     <div class="blob blob-1"></div>
     <div class="slide-header">
       <span class="eyebrow-pill">11. Conclusion &amp; Horizon</span>
-      <h2 class="slide-title">Project Summary &amp; <em>Future Scope.</em></h2>
+      <h2 class="slide-title">Wrapping Up &amp; What's Next — <em>Summary &amp; Future Scope.</em></h2>
     </div>
     <div class="slide-body">
       <div class="grid-2">
         <div class="card-box">
-          <span class="badge-tag badge-emerald">Achievements</span>
+          <span class="badge-tag badge-emerald">What We Delivered</span>
           <h3 style="font-size:1.2rem; color:#fff; margin-bottom:12px;">Key Project Milestones</h3>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:0.88rem; color:var(--text-2);">
-            <li><strong style="color:#fff;">✔ Production-Grade Full Stack:</strong> Seamlessly unified React 19, Express 5, and MongoDB 9.</li>
-            <li><strong style="color:#fff;">✔ Verified CRUD Integrity:</strong> 9 functional endpoints with robust error handling and cascading cleanup.</li>
-            <li><strong style="color:#fff;">✔ Premium Editorial Aesthetics:</strong> Warm sunset color palette, Fraunces serif typography, and 3D parallax effects.</li>
-            <li><strong style="color:#fff;">✔ Reliable State Synchronization:</strong> Immediate capacity updates without manual page refreshes.</li>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:0.9rem; color:var(--text-2);">
+            <li><strong style="color:#fff;">✔ Full-Stack MERN:</strong> Seamlessly unified React 19, Express 5, and MongoDB 9.</li>
+            <li><strong style="color:#fff;">✔ Verified CRUD:</strong> 9 functional REST endpoints with robust error handling and cascading cleanup.</li>
+            <li><strong style="color:#fff;">✔ Warm Editorial Design:</strong> Sunset color palette, Fraunces serif typography, and 3D parallax touches.</li>
+            <li><strong style="color:#fff;">✔ Live Seat Sync:</strong> Immediate capacity updates without manual page refreshes.</li>
           </ul>
         </div>
         <div class="card-box border-brand">
-          <span class="badge-tag badge-brand">Future Horizons</span>
+          <span class="badge-tag badge-brand">Where It Can Go</span>
           <h3 style="font-size:1.2rem; color:var(--brand); margin-bottom:12px;">Future Roadmap</h3>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:0.88rem; color:var(--text-2);">
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:0.9rem; color:var(--text-2);">
             <li><strong style="color:var(--amber);">1. Interactive 2D Seat Matrix:</strong> Visual theatre seating map with occupied/vacant states.</li>
             <li><strong style="color:var(--amber);">2. Online Payment Gateway:</strong> UPI and card transactions via Razorpay / Stripe.</li>
             <li><strong style="color:var(--amber);">3. Automated QR Email Passes:</strong> PDF tickets delivered directly via Nodemailer.</li>
@@ -812,6 +816,7 @@
       <span class="tech-info">Thank You! Questions &amp; Demo Session</span>
       <span>URK24CS1199 · Christy Vincelet A   |   URK24CS1238 · Hari Vaishnavi</span>
     </div>
+  </div>
   </div>
 
 </div>
