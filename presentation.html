@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CineBook — Project Presentation & Viva Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+  :root {
+    --bg: #090b0e;
+    --surface-1: #101319;
+    --surface-2: #161a22;
+    --surface-3: #1f2530;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-strong: rgba(255, 107, 43, 0.3);
+    --brand: #ff6b2b;
+    --brand-dark: #ea580c;
+    --amber: #f59e0b;
+    --emerald: #10b981;
+    --red: #ef4444;
+    --text: #f1f5f9;
+    --text-2: #94a3b8;
+    --muted: #64748b;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+    user-select: none;
+  }
+
+  /* Slide Viewport */
+  .deck-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 24px;
+  }
+
+  .slide {
+    width: 100%;
+    max-width: 1240px;
+    aspect-ratio: 16 / 9;
+    max-height: calc(100vh - 48px);
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 44px 56px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.7), 0 0 50px -10px rgba(255, 107, 43, 0.15);
+    position: relative;
+    overflow: hidden;
+    animation: slideFade 0.35s ease-out;
+  }
+  .slide.active { display: flex; }
+
+  @keyframes slideFade {
+    from { opacity: 0; transform: scale(0.985); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Slide Background Glow Blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .blob-1 { width: 450px; height: 450px; background: var(--brand); top: -120px; right: -80px; }
+  .blob-2 { width: 350px; height: 350px; background: var(--amber); bottom: -100px; left: -60px; }
+
+  /* Header inside slide */
+  .slide-header {
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand);
+    background: rgba(255, 107, 43, 0.12);
+    border: 1px solid var(--line-strong);
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  .slide-title {
+    font-family: var(--font-display);
+    font-size: 2.3rem;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text);
+  }
+  .slide-title em {
+    font-style: italic;
+    color: var(--brand);
+    font-weight: 300;
+  }
+
+  /* Content area */
+  .slide-body {
+    flex-grow: 1;
+    display: flex;
+    position: relative;
+    z-index: 2;
+    overflow-y: auto;
+  }
+
+  /* Footer bar */
+  .slide-footer {
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    position: relative;
+    z-index: 2;
+  }
+  .slide-footer .team-info { font-weight: 500; }
+  .slide-footer .tech-info { color: var(--brand); font-weight: 600; }
+
+  /* Controls */
+  .deck-controls {
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(16, 19, 25, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  .btn-ctrl {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    font-size: 1.1rem;
+  }
+  .btn-ctrl:hover { background: var(--surface-3); color: var(--brand); }
+  .page-num { font-size: 0.82rem; font-weight: 600; color: var(--text-2); min-width: 48px; text-align: center; }
+
+  /* Utility Cards & Grids */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; width: 100%; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; width: 100%; }
+
+  .card-box {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-box.border-brand { border-color: var(--brand); box-shadow: 0 0 24px -6px rgba(255, 107, 43, 0.25); }
+  .card-box.border-amber { border-color: var(--amber); }
+
+  .badge-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .badge-brand { background: rgba(255, 107, 43, 0.15); color: var(--brand); }
+  .badge-amber { background: rgba(245, 158, 11, 0.15); color: var(--amber); }
+  .badge-emerald { background: rgba(16, 185, 129, 0.15); color: var(--emerald); }
+  .badge-red { background: rgba(239, 68, 68, 0.15); color: var(--red); }
+
+  /* Table styling */
+  .pres-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  .pres-table th {
+    background: var(--surface-3);
+    color: var(--brand);
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .pres-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-2);
+  }
+  .pres-table tr:hover td { background: rgba(255, 255, 255, 0.02); color: var(--text); }
+  .font-mono { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text); }
+
+  /* Title Slide Custom */
+  .title-hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .brand-logo-large {
+    font-family: var(--font-display);
+    font-size: 4.2rem;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .brand-logo-large em { color: var(--brand); font-style: italic; }
+  .tagline {
+    font-size: 1.3rem;
+    color: var(--amber);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .desc {
+    color: var(--text-2);
+    font-size: 0.98rem;
+    max-width: 800px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 780px;
+  }
+
+  /* Print Styles for PDF export */
+  @media print {
+    body { background: #000; padding: 0; }
+    .deck-controls { display: none; }
+    .deck-container { display: block; height: auto; padding: 0; }
+    .slide {
+      display: flex !important;
+      page-break-after: always;
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      max-height: none;
+      border-radius: 0;
+      border: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck-container">
+
+  <!-- ================= SLIDE 1: Title Slide ================= -->
+  <div class="slide active" id="slide-1">
+    <div class="blob blob-1"></div><div class="blob blob-2"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill"><i class="ti ti-sparkles"></i> Full-Stack Web Development Project</span>
+    </div>
+    <div class="slide-body">
+      <div class="title-hero">
+        <h1 class="brand-logo-large">Cine<em>Book</em></h1>
+        <div class="tagline">Modern Movie Ticket Booking &amp; Real-Time Inventory Management System</div>
+        <p class="desc">
+          A high-performance reactive web application developed with <strong>React 19 (Vite)</strong>, <strong>Node.js</strong>, 
+          <strong>Express.js REST APIs</strong>, and <strong>MongoDB Database Persistence</strong>, featuring real-time seat inventory synchronization and warm editorial motion design.
+        </p>
+        <div class="team-grid">
+          <div class="card-box">
+            <span class="badge-tag badge-brand">Team Member 1</span>
+            <strong style="font-size: 1.1rem; color: #fff;">Christy Vincelet A</strong>
+            <small style="color: var(--muted); margin-top: 2px;">Register No: URK24CS1199</small>
+            <small style="color: var(--text-2); margin-top: 4px;">Frontend Architecture &amp; State Management</small>
+          </div>
+          <div class="card-box">
+            <span class="badge-tag badge-amber">Team Member 2</span>
+            <strong style="font-size: 1.1rem; color: #fff;">Hari Vaishnavi</strong>
+            <small style="color: var(--muted); margin-top: 2px;">Register No: URK24CS1238</small>
+            <small style="color: var(--text-2); margin-top: 4px;">Backend APIs &amp; MongoDB Modeling</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="team-info">Department of Computer Science &amp; Engineering</span>
+      <span class="tech-info">React JS · Node.js · Express · MongoDB</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 2: Problem Statement & Vision ================= -->
+  <div class="slide" id="slide-2">
+    <div class="blob blob-1"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">01. Overview &amp; Motivation</span>
+      <h2 class="slide-title">Problem Statement &amp; <em>Project Vision.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-2">
+        <div class="card-box">
+          <span class="badge-tag badge-red">Legacy System Pitfalls</span>
+          <h3 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 12px; color: #fff;">The Challenges</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 0.95rem; color: var(--text-2);">
+            <li><strong style="color: #fff;">• Sluggish &amp; Cluttered Interfaces:</strong> Traditional booking sites are heavy, ad-ridden, and lack intuitive user flow.</li>
+            <li><strong style="color: #fff;">• Inventory Inconsistencies:</strong> Slow database synchronization leads to seat contention and double-booking errors.</li>
+            <li><strong style="color: #fff;">• Difficult Cancellations:</strong> Most platforms bury ticket cancellation behind multi-step support tickets without instant seat return.</li>
+            <li><strong style="color: #fff;">• Disjointed Administration:</strong> No unified dashboard for cinema managers to curate film schedules and seat quotas.</li>
+          </ul>
+        </div>
+        <div class="card-box border-brand">
+          <span class="badge-tag badge-brand">The CineBook Solution</span>
+          <h3 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 12px; color: var(--brand);">Our Vision &amp; Objectives</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 0.95rem; color: var(--text-2);">
+            <li><strong style="color: var(--amber);">✔ End-to-End CRUD Lifecycle:</strong> Full control over movie schedules, seat updates, and instant bookings.</li>
+            <li><strong style="color: var(--amber);">✔ Atomic Seat Restitution:</strong> Automatic decrement on reservation and immediate refund back to inventory on cancellation.</li>
+            <li><strong style="color: var(--amber);">✔ Warm Editorial Aesthetics:</strong> Inspired by HealthTwin with sunset orange accents, Fraunces serif typography, and 3D parallax effects.</li>
+            <li><strong style="color: var(--amber);">✔ Verified Admission Passes:</strong> Generates instant digital passes with perforated styling, showtimes, and barcode references.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>CineBook Presentation Deck</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 3: System Architecture ================= -->
+  <div class="slide" id="slide-3">
+    <div class="blob blob-2"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">02. Architecture Design</span>
+      <h2 class="slide-title">Three-Tier <em>System Architecture.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-3">
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Presentation Tier</span>
+          <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 8px; color: #fff;">Client SPA (React 19)</h3>
+          <small style="color: var(--amber); font-weight: 600; margin-bottom: 12px;">Port 5173 · Vite Engine</small>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: var(--text-2);">
+            <li>• React 19 Components with Hooks</li>
+            <li>• Declarative React Router DOM v7</li>
+            <li>• Axios HTTP API Client</li>
+            <li>• Custom CSS3 Design Tokens</li>
+            <li>• IntersectionObserver Motion Engine</li>
+            <li>• Preloader, 3D Tilt &amp; Counter Hooks</li>
+          </ul>
+        </div>
+        <div class="card-box border-brand">
+          <span class="badge-tag badge-amber">Application Tier</span>
+          <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 8px; color: #fff;">Express REST Server</h3>
+          <small style="color: var(--amber); font-weight: 600; margin-bottom: 12px;">Port 7000 · Node.js Runtime</small>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: var(--text-2);">
+            <li>• Express.js 5 Application Server</li>
+            <li>• REST API Routes (/api/*)</li>
+            <li>• CORS Security &amp; JSON Body Parsers</li>
+            <li>• Concurrency &amp; Inventory Validation</li>
+            <li>• Seat Restitution Logic</li>
+            <li>• Uniform JSON Error Formatter</li>
+          </ul>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-emerald">Data Persistence Tier</span>
+          <h3 style="font-size: 1.2rem; font-family: var(--font-display); margin-bottom: 8px; color: #fff;">MongoDB Database</h3>
+          <small style="color: var(--emerald); font-weight: 600; margin-bottom: 12px;">Port 27017 · Mongoose 9 ODM</small>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: var(--text-2);">
+            <li>• MongoDB 9.0 Community Server</li>
+            <li>• Database Name: <code>moviebooking</code></li>
+            <li>• Collection: <code>movies</code> (Unique Index)</li>
+            <li>• Collection: <code>bookings</code> (Receipts)</li>
+            <li>• Live Inspection with Compass GUI</li>
+            <li>• Terminal CLI (npm run db:view)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>3-Tier Full-Stack Architecture</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 4: Tech Stack Matrix ================= -->
+  <div class="slide" id="slide-4">
+    <div class="blob blob-1"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">03. Technical Specifications</span>
+      <h2 class="slide-title">Technology Stack &amp; <em>Tooling.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-3">
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Frontend Framework</span>
+          <h4 style="color:#fff; margin-bottom:12px;">React 19 &amp; Vite 8</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.6; margin-bottom:14px;">
+            Harnesses React 19 functional components, memoized state trees, and Vite's lightning-fast ES module hot reloading.
+          </p>
+          <div style="font-size:0.82rem; color:var(--muted); border-top:1px solid var(--line); padding-top:10px;">
+            <strong>Packages:</strong> react, react-dom, react-router-dom, axios, bootstrap
+          </div>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-amber">Backend &amp; Database</span>
+          <h4 style="color:#fff; margin-bottom:12px;">Node.js, Express &amp; MongoDB</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.6; margin-bottom:14px;">
+            Lightweight, event-driven REST API server paired with Mongoose schema modeling and MongoDB local persistence daemon.
+          </p>
+          <div style="font-size:0.82rem; color:var(--muted); border-top:1px solid var(--line); padding-top:10px;">
+            <strong>Packages:</strong> express 5.3, mongoose 9.11, cors 2.8, nodemon
+          </div>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-emerald">DevOps &amp; Quality</span>
+          <h4 style="color:#fff; margin-bottom:12px;">Git, Compass &amp; Oxlint</h4>
+          <p style="font-size:0.86rem; color:var(--text-2); line-height:1.6; margin-bottom:14px;">
+            Code versioning through Git/GitHub, sub-40ms static linting with Oxlint, and graphical DB verification with Compass.
+          </p>
+          <div style="font-size:0.82rem; color:var(--muted); border-top:1px solid var(--line); padding-top:10px;">
+            <strong>Tools:</strong> git, github, mongosh, mongodb-compass, oxlint
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>CineBook Tech Stack Matrix</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 5: Database Modeling ================= -->
+  <div class="slide" id="slide-5">
+    <div class="blob blob-2"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">04. Data Modeling</span>
+      <h2 class="slide-title">MongoDB Collections &amp; <em>Mongoose Schemas.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-2">
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Collection: movies</span>
+          <table class="pres-table">
+            <thead>
+              <tr><th>Field</th><th>Type</th><th>Constraint</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="font-mono">movieId</td><td>String</td><td>unique, required</td><td>Unique identifier (M101)</td></tr>
+              <tr><td class="font-mono">title</td><td>String</td><td>required</td><td>Official film title</td></tr>
+              <tr><td class="font-mono">genre</td><td>String</td><td>required</td><td>Genre classification</td></tr>
+              <tr><td class="font-mono">duration</td><td>Number</td><td>required, min: 1</td><td>Runtime in minutes</td></tr>
+              <tr><td class="font-mono">language</td><td>String</td><td>required</td><td>Audio language</td></tr>
+              <tr><td class="font-mono">availableSeats</td><td>Number</td><td>required, min: 0</td><td>Available seat inventory</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-amber">Collection: bookings</span>
+          <table class="pres-table">
+            <thead>
+              <tr><th>Field</th><th>Type</th><th>Constraint</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="font-mono">customerName</td><td>String</td><td>required</td><td>Guest full name</td></tr>
+              <tr><td class="font-mono">movieId</td><td>String</td><td>required</td><td>Foreign movie key</td></tr>
+              <tr><td class="font-mono">movieTitle</td><td>String</td><td>required</td><td>Snapshot of title</td></tr>
+              <tr><td class="font-mono">showtime</td><td>String</td><td>required</td><td>Selected show slot</td></tr>
+              <tr><td class="font-mono">seats</td><td>Number</td><td>required, min: 1</td><td>Reserved seats count</td></tr>
+              <tr><td class="font-mono">status</td><td>String</td><td>default: 'Booked'</td><td>'Booked' | 'Cancelled'</td></tr>
+              <tr><td class="font-mono">bookingDate</td><td>Date</td><td>default: Date.now</td><td>ISO timestamp</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>MongoDB Mongoose Schemas</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 6: REST API Matrix ================= -->
+  <div class="slide" id="slide-6">
+    <div class="blob blob-1"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">05. REST API Architecture</span>
+      <h2 class="slide-title">Backend RESTful <em>Endpoints Matrix.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="card-box" style="width: 100%; padding: 12px 18px;">
+        <table class="pres-table">
+          <thead>
+            <tr><th>Method</th><th>Endpoint</th><th>CRUD</th><th>Payload / Params</th><th>Purpose</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="color:#10b981; font-weight:700;">POST</td><td class="font-mono">/api/addMovie</td><td>Create</td><td>{ movieId, title, genre, duration, ... }</td><td>Adds a new movie to schedule with seat limit</td></tr>
+            <tr><td style="color:#3b82f6; font-weight:700;">GET</td><td class="font-mono">/api/viewMovies</td><td>Read</td><td>None</td><td>Retrieves all movies and live seat stock</td></tr>
+            <tr><td style="color:#3b82f6; font-weight:700;">GET</td><td class="font-mono">/api/searchMovies</td><td>Read</td><td>?title=searchQuery</td><td>Case-insensitive title search via regex</td></tr>
+            <tr><td style="color:#f59e0b; font-weight:700;">POST</td><td class="font-mono">/api/updateMovie</td><td>Update</td><td>{ id, title, genre, duration, seats }</td><td>Modifies details and updates seat quota</td></tr>
+            <tr><td style="color:#ef4444; font-weight:700;">POST</td><td class="font-mono">/api/deleteMovie</td><td>Delete</td><td>{ id }</td><td>Removes movie and cleans related bookings</td></tr>
+            <tr><td style="color:#10b981; font-weight:700;">POST</td><td class="font-mono">/api/bookTicket</td><td>Create</td><td>{ customerName, movieId, showtime, seats }</td><td>Decrements inventory &amp; issues ticket pass</td></tr>
+            <tr><td style="color:#3b82f6; font-weight:700;">GET</td><td class="font-mono">/api/viewBookings</td><td>Read</td><td>None</td><td>Returns all booking history documents</td></tr>
+            <tr><td style="color:#f59e0b; font-weight:700;">POST</td><td class="font-mono">/api/cancelBooking</td><td>Update</td><td>{ id }</td><td>Marks status 'Cancelled' &amp; returns seats</td></tr>
+            <tr><td style="color:#ef4444; font-weight:700;">POST</td><td class="font-mono">/api/deleteBooking</td><td>Delete</td><td>{ id }</td><td>Purges booking record permanently from DB</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>9 REST API Endpoints Documented</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 7: Booking Workflow ================= -->
+  <div class="slide" id="slide-7">
+    <div class="blob blob-2"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">06. Workflow Engineering</span>
+      <h2 class="slide-title">Technical Workflow: <em>Ticket Booking.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-5">
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Step 01</span>
+          <h4 style="color:#fff; margin-bottom:8px;">User Selection</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">User chooses movie, showtime, enters name and specifies seat count.</p>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Step 02</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Axios Dispatch</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Client transmits async POST request payload to <code>/api/bookTicket</code>.</p>
+        </div>
+        <div class="card-box border-brand">
+          <span class="badge-tag badge-amber">Step 03</span>
+          <h4 style="color:var(--amber); margin-bottom:8px;">Server Validation</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Express verifies movie existence and checks: <code>availableSeats &gt;= requested</code>.</p>
+        </div>
+        <div class="card-box border-brand">
+          <span class="badge-tag badge-amber">Step 04</span>
+          <h4 style="color:var(--amber); margin-bottom:8px;">Atomic Save</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Decrements movie seats and persists new <code>Booking</code> document into MongoDB.</p>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-emerald">Step 05</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Pass Issuance</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Client generates verified digital ticket pass with cutouts and barcode.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>Booking &amp; Inventory Sync Sequence</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 8: Cancellation Workflow ================= -->
+  <div class="slide" id="slide-8">
+    <div class="blob blob-1"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">07. Workflow Engineering</span>
+      <h2 class="slide-title">Technical Workflow: <em>Ticket Cancellation.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-5">
+        <div class="card-box">
+          <span class="badge-tag badge-amber">Stage 01</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Cancel Intent</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">User clicks Cancel button on active ticket in <code>/bookings</code> view.</p>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-amber">Stage 02</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Modal Safeguard</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">ConfirmModal prompts confirmation to prevent accidental cancellations.</p>
+        </div>
+        <div class="card-box border-amber">
+          <span class="badge-tag badge-red">Stage 03</span>
+          <h4 style="color:var(--amber); margin-bottom:8px;">Status Shift</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Express verifies active state, changes <code>status = 'Cancelled'</code>.</p>
+        </div>
+        <div class="card-box border-amber">
+          <span class="badge-tag badge-emerald">Stage 04</span>
+          <h4 style="color:var(--emerald); margin-bottom:8px;">Seat Restitution</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Locates movie by movieId; adds seats back: <code>seats += booking.seats</code>.</p>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Stage 05</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Client Sync</h4>
+          <p style="font-size:0.8rem; color:var(--text-2); line-height:1.5;">Client receives success message; auto-reloads lists and updates badges.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>Seat Restitution Sequence</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 9: UI/UX & Motion Engineering ================= -->
+  <div class="slide" id="slide-9">
+    <div class="blob blob-2"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">08. User Experience</span>
+      <h2 class="slide-title">UI/UX Innovations &amp; <em>Motion Engineering.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-3">
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Color Palette</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Warm Sunset Shades</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
+            Radiant Sunset Orange (<code>#FF6B2B</code>), Burnt Terracotta (<code>#EA580C</code>), Golden Amber (<code>#F59E0B</code>), on rich Obsidian Slate (<code>#090B0E</code>).
+          </p>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Typography</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Editorial Display Serif</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
+            Google Fonts <strong>Fraunces</strong> with optical sizing for headlines and <strong>DM Sans</strong> for high-contrast UI legibility.
+          </p>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-amber">Hydration</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Cinema Pulse Preloader</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
+            Animated SVG pulse path with glowing orange stroke and CineBook mark that gracefully fades out after load.
+          </p>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-amber">Scroll Animation</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Scroll-in Reveals</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
+            Custom <code>useScrollReveal</code> hook with IntersectionObserver triggers cubic ease-out fade-ups with custom delays (<code>--d</code>).
+          </p>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-emerald">Micro-Interactions</span>
+          <h4 style="color:#fff; margin-bottom:8px;">3D Parallax Ticket</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
+            Interactive pointer event listeners provide subtle 3D tilt perspective on featured movie cards with play badge reveals.
+          </p>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-emerald">Navigation</span>
+          <h4 style="color:#fff; margin-bottom:8px;">Floating Glass Header</h4>
+          <p style="font-size:0.82rem; color:var(--text-2); line-height:1.5;">
+            Glassmorphic backdrop-blur header with smart scroll hide/reveal and full-screen numbered menu overlay (01 to 05).
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>Motion Design &amp; Aesthetics</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 10: Database Verification ================= -->
+  <div class="slide" id="slide-10">
+    <div class="blob blob-1"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">09. Viva &amp; Demonstration</span>
+      <h2 class="slide-title">Live Database Verification: <em>GUI &amp; CLI.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-2">
+        <div class="card-box border-brand">
+          <span class="badge-tag badge-brand">Method 1: MongoDB Compass</span>
+          <h3 style="font-size:1.2rem; color:#fff; margin-bottom:10px;">Visual GUI Demonstration</h3>
+          <ol style="padding-left:18px; font-size:0.88rem; color:var(--text-2); display:flex; flex-direction:column; gap:10px;">
+            <li><strong>Connect to Local Host:</strong> Launch Compass and connect to <code>mongodb://localhost:27017</code>.</li>
+            <li><strong>Database Inspection:</strong> Select the <code>moviebooking</code> database and open <code>movies</code> or <code>bookings</code>.</li>
+            <li><strong>Live Document Observation:</strong> Review active movie records and customer booking passes in real time.</li>
+            <li><strong>Instant Synchronized Reflection:</strong> Book or cancel tickets on the UI, click <strong>Refresh (🔄)</strong> in Compass, and demonstrate instant DB document updates!</li>
+          </ol>
+        </div>
+        <div class="card-box border-amber">
+          <span class="badge-tag badge-amber">Method 2: Command Line Interface</span>
+          <h3 style="font-size:1.2rem; color:var(--amber); margin-bottom:10px;">Terminal CLI (npm run db:view)</h3>
+          <ol style="padding-left:18px; font-size:0.88rem; color:var(--text-2); display:flex; flex-direction:column; gap:10px;">
+            <li><strong>Built-In Inspection Tool:</strong> Executed via <code>node view-db.js</code> in <code>server-app</code>.</li>
+            <li><strong>Instant ASCII Tables:</strong> Prints live formatted tables of movies and customer bookings directly in the terminal.</li>
+            <li><strong>Perfect for Viva Sessions:</strong> Allows evaluators to inspect database records in seconds without leaving the terminal.</li>
+            <li><strong>Zero External Dependencies:</strong> Communicates directly over local TCP port 27017 via Mongoose.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>Database Verification Protocol</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 11: Challenges & Solutions ================= -->
+  <div class="slide" id="slide-11">
+    <div class="blob blob-2"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">10. Problem Solving</span>
+      <h2 class="slide-title">Technical Challenges &amp; <em>Engineering Solutions.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-2">
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Challenge 01</span>
+          <h4 style="color:#fff; margin-bottom:6px;">Inventory Contention &amp; Overbooking</h4>
+          <p style="font-size:0.84rem; color:var(--text-2); margin-bottom:8px;">Risk of multiple users booking the same last seats simultaneously.</p>
+          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.82rem; color:var(--emerald);">
+            <strong>Solution:</strong> Pre-save validation verifies <code>availableSeats &gt;= requested</code> before decrementing inventory.
+          </div>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-amber">Challenge 02</span>
+          <h4 style="color:#fff; margin-bottom:6px;">Two-Way Collection Synchronization</h4>
+          <p style="font-size:0.84rem; color:var(--text-2); margin-bottom:8px;">Cancelled bookings must reliably return seats back to movie capacity.</p>
+          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.82rem; color:var(--emerald);">
+            <strong>Solution:</strong> Cancellation endpoint matches <code>movieId</code> and increments <code>availableSeats += seats</code>.
+          </div>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-emerald">Challenge 03</span>
+          <h4 style="color:#fff; margin-bottom:6px;">React 19 StrictMode &amp; Effect Cascades</h4>
+          <p style="font-size:0.84rem; color:var(--text-2); margin-bottom:8px;">Linter warnings regarding synchronous setState execution inside useEffect.</p>
+          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.82rem; color:var(--emerald);">
+            <strong>Solution:</strong> Migrated to functional initializer callbacks and achieved 0 warnings across all 22 files in Oxlint.
+          </div>
+        </div>
+        <div class="card-box">
+          <span class="badge-tag badge-brand">Challenge 04</span>
+          <h4 style="color:#fff; margin-bottom:6px;">Fixed Header Navigation Collision</h4>
+          <p style="font-size:0.84rem; color:var(--text-2); margin-bottom:8px;">Fixed glassmorphic header created overlapping content collisions on inner pages.</p>
+          <div style="background:var(--surface-3); padding:8px 12px; border-radius:8px; font-size:0.82rem; color:var(--emerald);">
+            <strong>Solution:</strong> Calibrated <code>padding-top: 78px</code> with tight container padding for a snug, balanced layout.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span>URK24CS1199 &amp; URK24CS1238</span>
+      <span>Engineering Solutions</span>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE 12: Conclusion & Future Scope ================= -->
+  <div class="slide" id="slide-12">
+    <div class="blob blob-1"></div>
+    <div class="slide-header">
+      <span class="eyebrow-pill">11. Conclusion &amp; Horizon</span>
+      <h2 class="slide-title">Project Summary &amp; <em>Future Scope.</em></h2>
+    </div>
+    <div class="slide-body">
+      <div class="grid-2">
+        <div class="card-box">
+          <span class="badge-tag badge-emerald">Achievements</span>
+          <h3 style="font-size:1.2rem; color:#fff; margin-bottom:12px;">Key Project Milestones</h3>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:0.88rem; color:var(--text-2);">
+            <li><strong style="color:#fff;">✔ Production-Grade Full Stack:</strong> Seamlessly unified React 19, Express 5, and MongoDB 9.</li>
+            <li><strong style="color:#fff;">✔ Verified CRUD Integrity:</strong> 9 functional endpoints with robust error handling and cascading cleanup.</li>
+            <li><strong style="color:#fff;">✔ Premium Editorial Aesthetics:</strong> Warm sunset color palette, Fraunces serif typography, and 3D parallax effects.</li>
+            <li><strong style="color:#fff;">✔ Reliable State Synchronization:</strong> Immediate capacity updates without manual page refreshes.</li>
+          </ul>
+        </div>
+        <div class="card-box border-brand">
+          <span class="badge-tag badge-brand">Future Horizons</span>
+          <h3 style="font-size:1.2rem; color:var(--brand); margin-bottom:12px;">Future Roadmap</h3>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:0.88rem; color:var(--text-2);">
+            <li><strong style="color:var(--amber);">1. Interactive 2D Seat Matrix:</strong> Visual theatre seating map with occupied/vacant states.</li>
+            <li><strong style="color:var(--amber);">2. Online Payment Gateway:</strong> UPI and card transactions via Razorpay / Stripe.</li>
+            <li><strong style="color:var(--amber);">3. Automated QR Email Passes:</strong> PDF tickets delivered directly via Nodemailer.</li>
+            <li><strong style="color:var(--amber);">4. Multi-Screen Franchise Expansion:</strong> Schema expansion for multiple cinema branches.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="tech-info">Thank You! Questions &amp; Demo Session</span>
+      <span>URK24CS1199 · Christy Vincelet A   |   URK24CS1238 · Hari Vaishnavi</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Deck Controls Floating Bar -->
+<div class="deck-controls">
+  <button class="btn-ctrl" id="prev-btn" title="Previous Slide (Left Arrow)"><i class="ti ti-chevron-left"></i></button>
+  <span class="page-num" id="slide-num">1 / 12</span>
+  <button class="btn-ctrl" id="next-btn" title="Next Slide (Right Arrow)"><i class="ti ti-chevron-right"></i></button>
+  <button class="btn-ctrl" id="fs-btn" title="Toggle Fullscreen (F)"><i class="ti ti-maximize"></i></button>
+  <button class="btn-ctrl" id="print-btn" title="Print / Save to PDF (Ctrl+P)"><i class="ti ti-printer"></i></button>
+</div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 12;
+
+  function showSlide(index) {
+    if (index < 1) index = 1;
+    if (index > totalSlides) index = totalSlides;
+    currentSlide = index;
+
+    document.querySelectorAll('.slide').forEach((s, idx) => {
+      s.classList.toggle('active', idx + 1 === currentSlide);
+    });
+
+    document.getElementById('slide-num').textContent = `${currentSlide} / ${totalSlides}`;
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', () => showSlide(currentSlide - 1));
+  document.getElementById('next-btn').addEventListener('click', () => showSlide(currentSlide + 1));
+
+  document.getElementById('fs-btn').addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
+  });
+
+  document.getElementById('print-btn').addEventListener('click', () => {
+    window.print();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      showSlide(currentSlide + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      showSlide(currentSlide - 1);
+    } else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+      else document.exitFullscreen().catch(() => {});
+    } else if (e.key === 'Home') {
+      showSlide(1);
+    } else if (e.key === 'End') {
+      showSlide(totalSlides);
+    }
+  });
+</script>
+</body>
+</html>
