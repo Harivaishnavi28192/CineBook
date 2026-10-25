@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #080a0e;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .table-card {
+    width: 100%;
+    max-width: 1120px;
+    background: #10131a;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(255, 107, 43, 0.1);
+  }
+
+  .table-header-title {
+    padding: 20px 28px 18px;
+    background: linear-gradient(180deg, #161b24 0%, #10131a 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .title-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .title-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff6b2b 0%, #ea580c 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 700;
+    font-size: 18px;
+    box-shadow: 0 4px 14px rgba(255, 107, 43, 0.4);
+  }
+  .title-text {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #f1f5f9;
+    letter-spacing: -0.01em;
+  }
+  .title-text em {
+    color: #ff6b2b;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .title-sub {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+  .tech-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #ff6b2b;
+    background: rgba(255, 107, 43, 0.12);
+    border: 1px solid rgba(255, 107, 43, 0.35);
+    padding: 6px 14px;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead th {
+    background: #141822;
+    color: #94a3b8;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    text-align: left;
+    padding: 14px 22px;
+    border-bottom: 2px solid rgba(255, 107, 43, 0.55);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+  tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.012);
+  }
+
+  td {
+    padding: 12.5px 22px;
+    color: #cbd5e1;
+    vertical-align: middle;
+  }
+
+  .entity-cell {
+    font-weight: 700;
+    color: #f8fafc;
+    font-size: 13.5px;
+  }
+
+  .op-badge {
+    display: inline-block;
+    padding: 3.5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .op-create { background: rgba(16, 185, 129, 0.16); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.32); }
+  .op-read   { background: rgba(59, 130, 246, 0.16); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.32); }
+  .op-update { background: rgba(245, 158, 11, 0.16); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.32); }
+  .op-delete { background: rgba(239, 68, 68, 0.16); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.32); }
+
+  .trigger-text {
+    color: #e2e8f0;
+    font-size: 12.8px;
+  }
+  .trigger-path {
+    background: #181d27;
+    color: #e2e8f0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .api-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .api-method {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+  .method-post { color: #f97316; }
+  .method-get  { color: #38bdf8; }
+  .api-route {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #fef08a;
+    background: #171c26;
+    padding: 3px 8px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    display: inline-block;
+  }
+
+  .query-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #fed7aa;
+    background: #161b24;
+    padding: 5px 11px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 107, 43, 0.2);
+    display: inline-block;
+    line-height: 1.4;
+  }
+  .query-code .fn { color: #67e8f9; }
+  .query-code .kw { color: #c084fc; font-weight: 600; }
+  .query-code .op { color: #94a3b8; }
+</style>
+</head>
+<body>
+
+<div class="table-card" id="capture-target">
+  <div class="table-header-title">
+    <div class="title-left">
+      <div class="title-icon">C</div>
+      <div>
+        <div class="title-text">CineBook — <em>CRUD Operations</em> &amp; Execution Matrix</div>
+        <div class="title-sub">Full-Stack Lifecycle Mapping: Presentation Layer, RESTful Routes &amp; MongoDB Execution</div>
+      </div>
+    </div>
+    <div class="tech-badge">MERN Stack Architecture</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 11%;">Entity</th>
+        <th style="width: 12%;">Operation</th>
+        <th style="width: 26%;">Frontend Trigger</th>
+        <th style="width: 22%;">Backend API Route</th>
+        <th style="width: 29%;">MongoDB Query Execution</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="entity-cell">Movie</td>
+        <td><span class="op-badge op-create">Create</span></td>
+        <td class="trigger-text">"Add Movie" form in <span class="trigger-path">/admin</span></td>
+        <td>
+          <div class="api-cell">
+            <span class="api-method method-post">POST</span>
+            <span class="api-route">/api/addMovie</span>
+          </div>
+        </td>
+        <td><span class="query-code"><span class="kw">new</span> Movie(data).<span class="fn">save</span>()</span></td>
+      </tr>
+      <tr>
+        <td class="entity-cell">Movie</td>
+        <td><span class="op-badge op-read">Read</span></td>
+        <td class="trigger-text">Navigation to <span class="trigger-path">/</span>, <span class="trigger-path">/movies</span>, <span class="trigger-path">/book</span></td>
+        <td>
+          <div class="api-cell">
+            <span class="api-method method-get">GET</span>
+            <span class="api-route">/api/viewMovies</span>
+          </div>
+        </td>
+        <td><span class="query-code">Movie.<span class="fn">find</span>()</span></td>
+      </tr>
+      <tr>
+        <td class="entity-cell">Movie</td>
+        <td><span class="op-badge op-update">Update</span></td>
+        <td class="trigger-text">"Edit" button on movie row in <span class="trigger-path">/admin</span></td>
+        <td>
+          <div class="api-cell">
+            <span class="api-method method-post">POST</span>
+            <span class="api-route">/api/updateMovie</span>
+          </div>
+        </td>
+        <td><span class="query-code">Movie.<span class="fn">findByIdAndUpdate</span>(id, data)</span></td>
+      </tr>
+      <tr>
+        <td class="entity-cell">Movie</td>
+        <td><span class="op-badge op-delete">Delete</span></td>
+        <td class="trigger-text">"Delete" button in <span class="trigger-path">/admin</span></td>
+        <td>
+          <div class="api-cell">
+            <span class="api-method method-post">POST</span>
+            <span class="api-route">/api/deleteMovie</span>
+          </div>
+        </td>
+        <td><span class="query-code">Movie.<span class="fn">findByIdAndDelete</span>(id)</span></td>
+      </tr>
+      <tr>
+        <td class="entity-cell">Booking</td>
+        <td><span class="op-badge op-create">Create</span></td>
+        <td class="trigger-text">"Confirm &amp; Book Tickets" in <span class="trigger-path">/book</span></td>
+        <td>
+          <div class="api-cell">
+            <span class="api-method method-post">POST</span>
+            <span class="api-route">/api/bookTicket</span>
+          </div>
+        </td>
+        <td><span class="query-code">Movie.<span class="fn">save</span>() <span class="op">+</span> <span class="kw">new</span> Booking().<span class="fn">save</span>()</span></td>
+      </tr>
+      <tr>
+        <td class="entity-cell">Booking</td>
+        <td><span class="op-badge op-read">Read</span></td>
+        <td class="trigger-text">Navigation to <span class="trigger-path">/bookings</span></td>
+        <td>
+          <div class="api-cell">
+            <span class="api-method method-get">GET</span>
+            <span class="api-route">/api/viewBookings</span>
+          </div>
+        </td>
+        <td><span class="query-code">Booking.<span class="fn">find</span>().<span class="fn">sort</span>()</span></td>
+      </tr>
+      <tr>
+        <td class="entity-cell">Booking</td>
+        <td><span class="op-badge op-update">Update</span></td>
+        <td class="trigger-text">"Cancel" button on ticket row</td>
+        <td>
+          <div class="api-cell">
+            <span class="api-method method-post">POST</span>
+            <span class="api-route">/api/cancelBooking</span>
+          </div>
+        </td>
+        <td><span class="query-code">Booking.<span class="fn">save</span>() <span class="op">+</span> Movie.<span class="fn">save</span>()</span></td>
+      </tr>
+      <tr>
+        <td class="entity-cell">Booking</td>
+        <td><span class="op-badge op-delete">Delete</span></td>
+        <td class="trigger-text">"Trash" icon button on booking row</td>
+        <td>
+          <div class="api-cell">
+            <span class="api-method method-post">POST</span>
+            <span class="api-route">/api/deleteBooking</span>
+          </div>
+        </td>
+        <td><span class="query-code">Booking.<span class="fn">findByIdAndDelete</span>(id)</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
