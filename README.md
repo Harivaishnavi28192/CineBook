@@ -1,7 +1,5 @@
 # Movie Ticket Booking System
 
-URK24CS1199 – Christy Vincelet A
-URK24CS1238 – Hari Vaishnavi
 
 A full-stack web application built with **React JS + Bootstrap** (frontend), **Node.js + Express.js** (backend APIs) and **MongoDB** (database, via Mongoose).
 
